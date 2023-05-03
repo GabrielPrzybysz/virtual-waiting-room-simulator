@@ -26,5 +26,7 @@ int main() {
     std::cout << "O state da minha_instancia é: " << stateToString(user->state)  << std::endl;
     std::cout << "A altura da minha_instancia é: " << user->safe_zone_timer << std::endl;
 
+    delete user;
+
     return 0;
 }
