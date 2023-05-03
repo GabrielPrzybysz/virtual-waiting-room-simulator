@@ -10,10 +10,10 @@ public:
 
     std::string id;
     State state;
-    float safe_zone_timer;
+    float safeZoneTimer;
 
     User(const std::string& id, State state, float timer)
-        : id(id), state(state), safe_zone_timer(timer) {}
+        : id(id), state(state), safeZoneTimer(timer) {}
 };
 
 #endif
