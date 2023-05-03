@@ -1,32 +1,40 @@
 #include <iostream>
-#include "User.h"
+#include "Queue.h"
 
-std::string stateToString(User::State state) 
+int main() 
 {
-    switch (state) {
-        case User::State::FINISHED:
-            return "FINISHED";
-        case User::State::WAITING:
-            return "WAITING";
-        case User::State::IN_SAFE_ZONE:
-            return "IN_SAFE_ZONE";
-        default:
-            return "UNKNOWN";
-    }
-}
+    Queue q(5);
 
+    User* u1 = new User("user1", User::State::WAITING, 3.0);
+    User* u2 = new User("user2", User::State::IN_SAFE_ZONE, 2.0);
+    User* u3 = new User("user3", User::State::FINISHED, 1.0);
 
-int main() {
+    q.enqueue(u1);
+    q.enqueue(u2);
+    q.enqueue(u3);
 
-    User* user = new User("gabriel", User::State::WAITING, 1000);
+    std::cout << "Size of queue: " << q.size() << std::endl;
 
-    user->state = User::State::FINISHED;
+    User* peeked = q.peek();
+    std::cout << "Peeked user: " << peeked->id << std::endl;
 
-    std::cout << "O id da minha_instancia é: " << user->id << std::endl;
-    std::cout << "O state da minha_instancia é: " << stateToString(user->state)  << std::endl;
-    std::cout << "A altura da minha_instancia é: " << user->safe_zone_timer << std::endl;
+    User* dequeued = q.dequeue();
+    std::cout << "Dequeued user: " << dequeued->id << std::endl;
 
-    delete user;
+    std::cout << "Size of queue: " << q.size() << std::endl;
+
+    q.enqueue(u1);
+    q.enqueue(u2);
+    q.enqueue(u3);
+
+    std::cout << "Size of queue: " << q.size() << std::endl;
+
+    User* dequeued2 = q.dequeue();
+    std::cout << "Dequeued user: " << dequeued2->id << std::endl;
+
+    std::cout << "Size of queue: " << q.size() << std::endl;
+
+    getchar();
 
     return 0;
 }
